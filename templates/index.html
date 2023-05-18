@@ -2,6 +2,31 @@
 
 {% block conteudo %}
 
-<h3>Trello</h3>
+<div class="container">
+    <nav class="navIndex">
+        <ul>
+            <li>Quadros</li>
+        </ul>
+        <p>Áreas de trabalho</p>
+        <ul>
+            <li></li>
+        </ul>
+    </nav>
+
+    <section class="sectionIndex">
+        Áreas de trabalho
+        <div class="workspace">
+            <div class="newBoard boardList">
+                Criar novo quadro
+            </div>
+            {% for item in listaBoard %}
+                <a href="/b/{{item.cod}}">
+                    <div class="boardList">{{item.board}}</div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
 
 {% endblock %}

@@ -2,3 +2,4 @@ teste*
 venv/
 testes/
 __pycache__/
+db/

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #3399ff;
+    --secondary: #eee;
+    --cor1: #fff;
+    --cor2: #dadada;
+    --cor3: #888;
+  }
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    border-bottom: 1px solid var(--cor2);
+    line-height: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navIndex {
+    width: 200px;
+    border: 1px solid var(--cor2);
+    min-height: 400px;
+}
+
+.navIndex ul {
+    list-style: none;
+}
+
+.sectionIndex{
+    width: 800px;
+    border: 1px solid var(--cor2);
+}
+
+a {
+    text-decoration: none;
+}
+
+.boardList {
+    width: 180px;
+    height: 50px;
+    border: 1px solid var(--cor2);
+    margin: 5px;
+}
+
+.workspace {
+    display: flex;
+    min-height: 400px;
+}
+
+.headerSec {
+    border-bottom: 1px solid var(--cor2);
+    line-height: 20px;
+    height: 40px;
+}
+
+.list {
+    display: flex;
+}
+.listas {
+    background-color: #f1f2f4;
+    width: 250px;
+    min-height: 75px;
+    border: 1px solid var(--cor2);
+    border-radius: 5px;
+    margin: 7px;
+    padding: 5px;
+}
+
+.listasTitulo {
+    font-weight: bolder;
+}
+
+.cartao {
+    width: 95%;
+    background-color: var(--cor1);
+    border-radius: 5px;
+    border: 1px solid var(--cor2);
+    padding: 7px;
+    margin-top: 5px;
+}
