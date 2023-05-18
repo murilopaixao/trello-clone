@@ -16,8 +16,9 @@
     <section class="sectionIndex">
         Áreas de trabalho
         <div class="workspace">
-            <div class="newBoard boardList">
-                Criar novo quadro
+            <div class="newBoard boardList flex">
+                <span>Criar novo quadro</span>
+                
             </div>
             {% for item in listaBoard %}
                 <a href="/b/{{item.cod}}">

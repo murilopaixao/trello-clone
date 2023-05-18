@@ -18,6 +18,12 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 header {
     border-bottom: 1px solid var(--cor2);
     line-height: 20px;
@@ -48,11 +54,18 @@ a {
     text-decoration: none;
 }
 
+.newBoard {
+    background-color: #091e420a;
+    cursor: pointer;
+}
+
 .boardList {
     width: 180px;
-    height: 50px;
+    height: 80px;
+    font-weight: 400;
     border: 1px solid var(--cor2);
     margin: 5px;
+    padding: 7px;
 }
 
 .workspace {

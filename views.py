@@ -1,51 +1,59 @@
-from flask import render_template, request, redirect, url_for, flash, send_from_directory, send_file
+from flask import render_template, redirect, url_for
 from app import app
 import json
-import datetime
+import pymongo
 from os import getenv
-from tinydb import TinyDB, Query
 
+MONGO_SRC = getenv('MONGO_SRC')
+MONGO_LOGIN = getenv('MONGO_LOGIN')
+MONGO_PASSWORD = getenv('MONGO_PASSWORD')
+MONGO_PORT = getenv('MONGO_PORT')
 
-boardDB = TinyDB('./db/board.json')
-listasDB = TinyDB('./db/listas.json')
-cartoes = TinyDB('./db/cartoes.json')
-q = Query()
+conn_str = (f"mongodb://{MONGO_LOGIN}:{MONGO_PASSWORD}@{MONGO_SRC}:{MONGO_PORT}")
+
+try:
+    client = pymongo.MongoClient(conn_str)
+except Exception:
+    print("Error:" + Exception)
+
+myDB = client["trello"]
+myCollectionBoards = myDB["boards"]
+myCollectionListas = myDB["listas"]
 
 @app.route('/')
 def index():
-    listaBoard = boardDB.all()
-    return render_template('index.html', listaBoard=listaBoard)
+    lista = myCollectionBoards.find({},{"_id": 0})
+    return render_template('index.html', lista=lista)
 
 @app.route('/newboard')
 def newboard():
-    cod = "003"
-    board = "Valle"
+    cod = 2
+    board = "Dia-a-dia"
     myDoc = {
         "cod": cod,
         "board": board
     }
-    boardDB.insert(myDoc)
+    myCollectionBoards.insert_one(myDoc)
     return "Ok"
-
-@app.route('/b/<board>')
-def b(board):
-    boards = boardDB.all()
-    listas = listasDB.all()
-    boardAtual = boardDB.search(q.cod == board)
-    return render_template('board.html', board=board, boardAtual=boardAtual, listas=listas, boards=boards)
 
 @app.route('/newlist')
 def newlist():
-    board = "001"
-    codLista = "l003"
-    nomeLista = "done"
-    posicao = 3
+    board = 1
+    codLista = 2
+    nomeLista = "do"
+    posicao = 2
     myDoc = {
         "codLista": codLista,
         "board": board,
         "posicao": posicao,
         "nomeLista": nomeLista
     }
-    listasDB.insert(myDoc)
+    myCollectionListas.insert_one(myDoc)
     return "Ok"
 
+@app.route('/b/<board>')
+def b(board):
+    boards = myCollectionBoards.find({},{"_id": 0})
+    listas = myCollectionListas.find({},{"_id": 0})
+    boardAtual = myCollectionBoards.find({"cod": int(board)},{"_id": 0})
+    return render_template('board.html', board=board, boardAtual=boardAtual, listas=listas, boards=boards)
