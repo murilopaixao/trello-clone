@@ -6,4 +6,4 @@ from os import getenv
 
 @app.route('/')
 def index():
-    return "Trello Clone"
+    return render_template('index.html')
